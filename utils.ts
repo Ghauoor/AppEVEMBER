@@ -1,0 +1,4 @@
+const formateNumber = (val: number) => {
+
+
+}
