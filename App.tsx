@@ -1,26 +1,33 @@
 import { StatusBar } from "expo-status-bar";
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import DayListItem from "./src/components/core/DayListItem";
-import React, { useEffect } from "react";
-import * as SplashScreen from 'expo-splash-screen';
+import React from "react";
+import * as SplashScreen from "expo-splash-screen";
 
-import { useFonts, AmaticSC_400Regular, AmaticSC_700Bold } from '@expo-google-fonts/amatic-sc';
+import {
+  useFonts,
+  AmaticSC_400Regular,
+  AmaticSC_700Bold,
+} from "@expo-google-fonts/amatic-sc";
 
-const days = [...Array(24)].map((val, index) => index + 1);
+const days = [...Array(24)].map((_, index) => index + 1);
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
     Amatic: AmaticSC_400Regular,
-    AmaticSC: AmaticSC_700Bold
-  })
-  const loadFonst = async () =>
-    await SplashScreen.preventAutoHideAsync()
+    AmaticSC: AmaticSC_700Bold,
+  });
+  const loadFonts = async () => await SplashScreen.preventAutoHideAsync();
 
-  useEffect(() => {
-    if (fontsLoaded || fontError)
-      loadFonst
-
-  }, [fontsLoaded, fontError])
+  React.useEffect(() => {
+    if (fontsLoaded || fontError) loadFonts;
+  }, [fontsLoaded, fontError]);
 
   if (!fontsLoaded && !fontError) {
     console.log("Hello There");
